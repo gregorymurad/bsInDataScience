@@ -43,7 +43,7 @@ st.plotly_chart(plot3,use_container_width=True)
 
 if len(options)>0:
     df_mod['Mean'] = df_mod.iloc[:,1:].mean(axis=1)
-    st.write("Table containing the mean values of the subject areas considering the selected universities")
+    st.write("Average percentage of the subject areas considering the selected universities")
     st.dataframe(df_mod[['Subjects','Mean']])
 
 _2DColumn = st.checkbox("Click here to see the distribution of subjects across all universities in a 2D column plot")
