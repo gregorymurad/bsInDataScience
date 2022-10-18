@@ -109,7 +109,10 @@ for filename in os.listdir(directory):
         course_fig.update_layout(
             font=dict(
                 size=20,
-                color="RebeccaPurple"))
+                color="RebeccaPurple"),
+            title_font_color="orange",
+            title_font_size=30
+        )
         st.plotly_chart(course_fig,use_container_width=True)
         with st.expander("Click here to see the table"):
             st.dataframe(course)
