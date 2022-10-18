@@ -104,6 +104,12 @@ for filename in os.listdir(directory):
         course.set_index("Course Name")
         course=course.sort_values(by=['Count'],ascending=False)
 
-        course_fig = px.bar(course,x="Course Name",y="Count",title="Most Common Courses in {}".format(f[13:-4]))
+        course_fig = px.bar(course,x="Course Name",y="Count",title="Most Common Required Courses in {}".format(f[13:-4]))
         # course_fig.update_traces(marker_color='red')
+        course_fig.update_layout(
+            font=dict(
+                size=20,
+                color="RebeccaPurple"))
         st.plotly_chart(course_fig,use_container_width=True)
+        with st.expander("Click here to see the table"):
+            st.dataframe(course)
