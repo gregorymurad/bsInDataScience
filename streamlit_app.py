@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 
 st.set_page_config(
@@ -88,6 +89,21 @@ university = st.selectbox("Choose a University",
 
 if university:
     i=uni.index(university)
-    fig = px.pie(df[:-1], values=uni[i], names='Subjects')
+    fig = px.pie(df[:], values=uni[i], names='Subjects')
     st.plotly_chart(fig,use_container_width=True)
     st.write("[Program Overview]({})".format(links[university]))
+
+# Most Common Classes
+
+directory ="course_files"
+for filename in os.listdir(directory):
+    f = os.path.join(directory, filename)
+    # checking if it is a file
+    if os.path.isfile(f):
+        course = pd.read_csv(f)
+        course.set_index("Course Name")
+        course=course.sort_values(by=['Count'],ascending=False)
+
+        course_fig = px.bar(course,x="Course Name",y="Count",title="Most Common Courses in {}".format(f[13:-4]))
+        # course_fig.update_traces(marker_color='red')
+        st.plotly_chart(course_fig,use_container_width=True)
