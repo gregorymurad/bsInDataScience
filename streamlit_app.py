@@ -17,7 +17,7 @@ st.set_page_config(
 )
 
 st.title("Bachelor of Science in Data Science - FIU KFSCIS")
-st.header("Distribution of the Required Subject Areas in Different Data Science Programs")
+st.subheader("Distribution of the Required Subject Areas in Different Data Science Programs")
 
 
 df = pd.read_csv("universities-comparison.csv")
@@ -93,9 +93,10 @@ if university:
     st.plotly_chart(fig,use_container_width=True)
     st.write("[Program Overview]({})".format(links[university]))
 
-# Most Common Classes
+st.subheader("Most Common Required Classes")
 
 directory ="course_files"
+
 for filename in os.listdir(directory):
     f = os.path.join(directory, filename)
     # checking if it is a file
@@ -116,3 +117,6 @@ for filename in os.listdir(directory):
         st.plotly_chart(course_fig,use_container_width=True)
         with st.expander("Click here to see the table"):
             st.dataframe(course)
+
+st.subheader("FIU-KFSCIS - Undergraduate Program Flowcharts")
+st.write("[Flowcharts](https://users.cs.fiu.edu/~prabakar/upc/flowcharts/)")
